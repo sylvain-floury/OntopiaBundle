@@ -1,0 +1,15 @@
+{
+    "name": "OntopiaBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sylvain Floury",
+            "email": "sylvain@floury.name"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.8",
+        "symfony/framework-bundle": "~2.3",
+        "guzzlehttp/guzzle": "4.*"
+    }
+}
