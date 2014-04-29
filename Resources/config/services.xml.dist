@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="flosy_ontopia.core.class">Flosy\Bundle\OntopiaBundle\Core\Ontopia</parameter>
+        
+        <parameter key="flosy_ontopia.query.preprocessor.class">Flosy\Bundle\OntopiaBundle\PreProcessor\QueryPreProcessor</parameter>
+        <parameter key="flosy_ontopia.query.url">http://ontopiatest.proximit.fr/omnigator/plugins/query/csv.jsp?processor=tolog</parameter>
+        <parameter key="flosy_ontopia.topicmap">ampoules.xtm</parameter>
+        
+        <parameter key="flosy_ontopia.http.client.class">Flosy\Bundle\OntopiaBundle\HttpClient\GuzzleHttpClient</parameter>
+        <parameter key="flosy_ontopia.http.client.login">ontopia</parameter>
+        <parameter key="flosy_ontopia.http.client.password">OnTopIA214#KeYPxx..</parameter>
+    </parameters>
+    
+    <services>
+        <service id="flosy_ontopia.core" class="%flosy_ontopia.core.class%">
+            <argument type="service" id="flosy_ontopia.query.preprocessor" />
+            <argument type="service" id="flosy_ontopia.http.client" />
+        </service>
+        
+        <service id="flosy_ontopia.query.preprocessor" class="%flosy_ontopia.query.preprocessor.class%">
+            <argument>%flosy_ontopia.query.url%</argument>
+            <argument>%flosy_ontopia.topicmap%</argument>
+        </service>
+        
+        <service id="flosy_ontopia.http.client" class="%flosy_ontopia.http.client.class%">
+            <call method="setHtaccessLogin">
+                 <argument>%flosy_ontopia.http.client.login%</argument>
+            </call>
+            <call method="setHtaccessPassword">
+                 <argument>%flosy_ontopia.http.client.password%</argument>
+            </call>
+        </service>
+        
+    </services>
+    
+    <!--
+    <parameters>
+        <parameter key="flosy_ontopia.example.class">Flosy\Bundle\OntopiaBundle\Example</parameter>
+    </parameters>
+
+    <services>
+        <service id="flosy_ontopia.example" class="%flosy_ontopia.example.class%">
+            <argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>
+        </service>
+    </services>
+    -->
+</container>
