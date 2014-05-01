@@ -13,9 +13,12 @@ class Ontopia {
     
     protected $httpClient;
     
-    public function __construct(QueryPreProcessor $queryPreProcessor, $httpClient) {
+    protected $transformer;
+    
+    public function __construct(QueryPreProcessor $queryPreProcessor, $httpClient, $transformer) {
         $this->queryPreProcessor = $queryPreProcessor;
         $this->httpClient = $httpClient;
+        $this->transformer = $transformer;
     }
     
     /**
@@ -30,8 +33,13 @@ class Ontopia {
         return $this->httpClient;
     }
     
+    public function getTransformer() {
+        return $this->transformer;
+    }
+    
     public function execute() {
         $this->getHttpĈlient()->setUrl($this->getQueryPreProcessor()->getQueryUrl());
-        return $this->getHttpĈlient()->execute();
+        $this->getTransformer()->import($this->getHttpĈlient()->execute());
+        return $this->getTransformer()->transform();
     }
 }

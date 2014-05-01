@@ -12,14 +12,17 @@
         <parameter key="flosy_ontopia.topicmap">ampoules.xtm</parameter>
         
         <parameter key="flosy_ontopia.http.client.class">Flosy\Bundle\OntopiaBundle\HttpClient\GuzzleHttpClient</parameter>
-        <parameter key="flosy_ontopia.http.client.login">ontopia</parameter>
-        <parameter key="flosy_ontopia.http.client.password">OnTopIA214#KeYPxx..</parameter>
+        <parameter key="flosy_ontopia.http.client.login">login</parameter>
+        <parameter key="flosy_ontopia.http.client.password">password</parameter>
+        
+        <parameter key="flosy_ontopia.transformer.class">Flosy\Bundle\OntopiaBundle\Transformer\CsvTransformer</parameter>
     </parameters>
     
     <services>
         <service id="flosy_ontopia.core" class="%flosy_ontopia.core.class%">
             <argument type="service" id="flosy_ontopia.query.preprocessor" />
             <argument type="service" id="flosy_ontopia.http.client" />
+            <argument type="service" id="flosy_ontopia.transformer" />
         </service>
         
         <service id="flosy_ontopia.query.preprocessor" class="%flosy_ontopia.query.preprocessor.class%">
@@ -36,19 +39,7 @@
             </call>
         </service>
         
+        <service id="flosy_ontopia.transformer" class="%flosy_ontopia.transformer.class%" />
     </services>
-    
-    <!--
-    <parameters>
-        <parameter key="flosy_ontopia.example.class">Flosy\Bundle\OntopiaBundle\Example</parameter>
-    </parameters>
 
-    <services>
-        <service id="flosy_ontopia.example" class="%flosy_ontopia.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-    </services>
-    -->
 </container>
