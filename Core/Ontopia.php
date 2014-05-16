@@ -29,7 +29,7 @@ class Ontopia {
         return $this->queryPreProcessor;
     }
     
-    public function getHttpĈlient() {
+    public function getHttpClient() {
         return $this->httpClient;
     }
     
@@ -38,8 +38,8 @@ class Ontopia {
     }
     
     public function execute() {
-        $this->getHttpĈlient()->setUrl($this->getQueryPreProcessor()->getQueryUrl());
-        $this->getTransformer()->import($this->getHttpĈlient()->execute());
+        $this->getHttpClient()->setUrl($this->getQueryPreProcessor()->getQueryUrl());
+        $this->getTransformer()->import($this->getHttpClient()->execute());
         return $this->getTransformer()->transform();
     }
 }

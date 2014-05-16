@@ -47,7 +47,7 @@ class TologQueryGenerator implements GeneratorInterface {
         $query = $this->prefix;
         
         foreach($this->filters as $filter) {
-            $query .= " ".$filter;
+            $query .= ", ".$filter;
         }
         
         $query .= " ".$this->suffix;

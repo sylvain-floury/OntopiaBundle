@@ -7,6 +7,8 @@
     <parameters>
         <parameter key="flosy_ontopia.core.class">Flosy\Bundle\OntopiaBundle\Core\Ontopia</parameter>
         
+        <parameter key="flosy_ontopia.generator.class">Flosy\Bundle\OntopiaBundle\Generator\TologQueryGenerator</parameter>
+        
         <parameter key="flosy_ontopia.query.preprocessor.class">Flosy\Bundle\OntopiaBundle\PreProcessor\QueryPreProcessor</parameter>
         <parameter key="flosy_ontopia.query.url">http://ontopiatest.proximit.fr/omnigator/plugins/query/csv.jsp?processor=tolog</parameter>
         <parameter key="flosy_ontopia.topicmap">ampoules.xtm</parameter>
@@ -19,18 +21,21 @@
     </parameters>
     
     <services>
+        
         <service id="flosy_ontopia.core" class="%flosy_ontopia.core.class%">
             <argument type="service" id="flosy_ontopia.query.preprocessor" />
             <argument type="service" id="flosy_ontopia.http.client" />
             <argument type="service" id="flosy_ontopia.transformer" />
         </service>
         
-        <service id="flosy_ontopia.query.preprocessor" class="%flosy_ontopia.query.preprocessor.class%">
+        <service id="flosy_ontopia.generator" class="%flosy_ontopia.generator.class%" />
+        
+        <service id="flosy_ontopia.query.preprocessor" class="%flosy_ontopia.query.preprocessor.class%" public="false">
             <argument>%flosy_ontopia.query.url%</argument>
             <argument>%flosy_ontopia.topicmap%</argument>
         </service>
         
-        <service id="flosy_ontopia.http.client" class="%flosy_ontopia.http.client.class%">
+        <service id="flosy_ontopia.http.client" class="%flosy_ontopia.http.client.class%" public="false">
             <call method="setHtaccessLogin">
                  <argument>%flosy_ontopia.http.client.login%</argument>
             </call>
@@ -39,7 +44,7 @@
             </call>
         </service>
         
-        <service id="flosy_ontopia.transformer" class="%flosy_ontopia.transformer.class%" />
+        <service id="flosy_ontopia.transformer" class="%flosy_ontopia.transformer.class%" public="false" />
     </services>
 
 </container>
