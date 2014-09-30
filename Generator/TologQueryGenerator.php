@@ -75,13 +75,15 @@ class TologQueryGenerator implements GeneratorInterface {
             $query .= $filter. ", ";
         }
         
-        $query .= $this->generateOrFilters($this->orFilters);
-        
-        if($this->norFilters) {
-            $query .= ('not('.$this->generateOrFilters($this->norFilters).')');
+        if($this->orFilters) {
+            $query .= $this->generateOrFilters($this->orFilters).', ';
         }
         
+        if($this->norFilters) {
+            $query .= 'not('.$this->generateOrFilters($this->norFilters).'), ';
+        }
         
+        $query = substr($query, 0, -2);
         
         if($this->suffix) {
             $query .= " ".$this->suffix;
