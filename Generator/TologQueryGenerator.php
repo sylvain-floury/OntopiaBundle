@@ -24,6 +24,14 @@ class TologQueryGenerator implements GeneratorInterface {
         $this->norFilters = array();
     }
     
+    public function clear() {
+        $this->setPrefix("");
+        $this->setSuffix("");
+        $this->andFilters = array();
+        $this->orFilters = array();
+        $this->norFilters = array();
+    }
+    
     public function setPrefix($prefix) {
         $this->prefix = $prefix;
     }

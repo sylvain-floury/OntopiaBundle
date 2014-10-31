@@ -13,4 +13,10 @@ interface GeneratorInterface {
      * @return String Query as string.
      */
     public function generate();
+    
+    /**
+     * Clear tolog query
+     * 
+     */
+    public function clear();
 }
