@@ -24,3 +24,13 @@ flosy_ontopia:
     type:     annotation
     prefix:   /ontopia
 ```
+
+/app/AppKernel.php
+``` php
+$bundles = array(
+...
+new Flosy\Bundle\OntopiaBundle\FlosyOntopiaBundle(),
+)
+```
+
+Configure @FlosyOntopiaBundle/Resources/config/service.xml
