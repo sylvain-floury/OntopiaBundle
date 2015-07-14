@@ -33,5 +33,14 @@ class QueryPreProcessor {
         $this->queryUrl .= "&tm=" . $this->topicmap;
         return $this->queryUrl;
     }
+    
+    function getTopicmap() {
+        return $this->topicmap;
+    }
+
+    function setTopicmap($topicmap) {
+        $this->topicmap = $topicmap;
+        return $this;
+    }
 
 }
